@@ -1,0 +1,7 @@
+input::placeholder {
+  transition: opacity 0.3s ease-in-out;
+}
+
+input:focus::placeholder {
+  opacity: 0;
+}
