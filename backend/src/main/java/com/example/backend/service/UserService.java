@@ -29,7 +29,6 @@ public class UserService {
         // se encripta la contraseña y se guarda en la base de datos
         user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
         user.setUsername(user.getUsername());
-        System.out.println("Error 8080"+ user);
         return userRepository.save(user);
     }
 

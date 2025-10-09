@@ -8,13 +8,18 @@
         <div class="max-w-[760px] min-w-[437px] p-7 flex flex-col">
             <div class="max-w-[600px] my-12 wrap-break-word leading-[84px] text-[64px] font-extrabold text-white">
                 <!--para aclarar se usa el wrap break word para que no se rompa el diseño de la frase-->
-                <h1 class="wrap-break-word min-w-0">Lo que esta pasando ahora</h1>
+                <h1 class="wrap-break-word min-w-0">Lo que esta pasando en la cocina ahora</h1>
             </div>
             <div class="mb-8 leading-[36px] wrap-break-word font-extrabold text-[36px] text-white">
                 <p class="wrap-break-word">Únete Hoy</p>
             </div>
-            <div class="text-white p-6 rounded-xl">
-                <a routerLink="/login">Registrarse</a>
+            <div class="flex flex-col mt-5 gap-6">
+                <div class="w-[50%] flex bg-white rounded-3xl py-1 text-center cursor-pointer">
+                    <a routerLink="/register" class="w-[100%] p-3">Registrarse</a>
+                </div>
+                <div class="w-[50%] flex bg-white rounded-3xl py-1 text-center cursor-pointer">
+                    <a routerLink="/login" class="w-[100%] py-3">Iniciar Sesion</a>
+                </div>
             </div>
         </div>
     </div>
