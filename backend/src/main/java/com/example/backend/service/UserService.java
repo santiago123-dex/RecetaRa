@@ -33,9 +33,7 @@ public class UserService {
     }
 
     // buscar por email para el logueo
-    public UserEntity findByEmail(String email){
-        return userRepository.findByEmail(email);
-    }
+   
 
     //perfil del usuario
     public UserEntity getUser(Long id){

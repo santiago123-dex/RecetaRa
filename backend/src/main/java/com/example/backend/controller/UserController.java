@@ -11,7 +11,7 @@ import com.example.backend.service.UserService;
 
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/auth")
 public class UserController {
 
     private final UserService userService;
