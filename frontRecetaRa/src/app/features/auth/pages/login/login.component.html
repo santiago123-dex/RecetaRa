@@ -1,27 +1,55 @@
-<div class="w-full h-screen bg-black flex">
-    <div class="w-2/4 flex justify-center items-center">
-        <div class="w-full max-w-[100%] max-h-[380px] h-[50%] flex justify-center">
-            <img src="../../../assets/logo.png" alt="" class="max-w-[310px] max-h-[310px] object-cover">
+<div class="w-full min-h-screen bg-black flex flex-col">
+    <!-- Navbar con logo para pantallas pequeñas -->
+    <nav class="w-full bg-black fixed top-0 z-50 border-b border-gray-800 md:hidden">
+        <div class="flex items-center justify-between p-2">
+            <div class="h-12 w-12">
+                <img src="../../../assets/logo.png" alt="Logo RecetaRa" class="w-full h-full object-contain">
+            </div>
+            <a routerLink="/" class="text-white px-4 py-2 hover:text-gray-300">
+                Volver
+            </a>
         </div>
-    </div>
-    <div class="w-2/4 min-w-[45vw] p-9 items-stretch flex">
-        <div class="max-w-[760px] min-w-[437px] p-7 flex flex-col items-center justify-center">
-            <form
-                class="w-full h-[50%] flex flex-col gap-6 items-center justify-center rounded-2xl">
-                <h2 class="text-white text-5xl font-extrabold mb-3">Iniciar Sesion</h2>
+    </nav>
 
-                <input type="email" placeholder="correo@ejemplo.com" required 
-                    class="w-[60%] bg-transparent text-white placeholder-white py-2 border-b-2 border-gray-300 focus:placeholder-opacity-0 focus:border-white focus:outline-none transition-all ease-in-out duration-300">
+    <!-- Contenedor principal -->
+    <div class="flex flex-col md:flex-row w-full min-h-screen md:mt-0 justify-center">
+        <!-- Logo section (visible solo en MD+) -->
+        <div class="hidden md:flex w-full justify-center items-center p-4 ">
+            <div class="w-full max-w-[380px] aspect-square flex justify-center">
+                <img src="../../../assets/logo.png" alt="Logo RecetaRa" class="w-full h-full object-contain">
+            </div>
+        </div>
 
-                <input type="password" placeholder="********" required
-                    class="w-[60%] bg-transparent text-white placeholder-white py-2 border-b-2 border-gray-300 focus:placeholder-opacity-0 focus:border-white focus:outline-none transition-all ease-in-out duration-300">
-            
-                <button type="submit" class="bg-white font-bold border-1 border-white rounded-[6px] py-2 w-[50%] cursor-pointer mt-4">INICIAR SESION</button>
-                <div class="w-[50%] text-center cursor-pointer">
-                    <a routerLink="/" class="text-white p-x4">Volver</a>
-                </div>
+        <!-- Form section -->
+        <div class="w-full p-4 md:p-9 flex items-center justify-center mt-14">
+            <div class="w-full max-w-[760px] p-4 md:p-7 flex flex-col items-center justify-center">
+                <form class="w-full max-w-md flex flex-col gap-6 items-center justify-center rounded-2xl">
+                    <h2 class="text-white text-3xl text-center md:text-5xl font-extrabold mb-3 ">Iniciar Sesión</h2>
+
+                    <input type="email" 
+                           placeholder="correo@ejemplo.com" 
+                           required 
+                           class="w-[80%] md:w-[80%] bg-transparent text-white placeholder-white py-2 border-b-2 border-gray-300 focus:placeholder-opacity-0 focus:border-white focus:outline-none transition-all ease-in-out duration-300">
+
+                    <input type="password" 
+                           placeholder="********" 
+                           required
+                           class="w-[80%] md:w-[80%] bg-transparent text-white placeholder-white py-2 border-b-2 border-gray-300 focus:placeholder-opacity-0 focus:border-white focus:outline-none transition-all ease-in-out duration-300">
+                
+                    <button type="submit" 
+                            class="w-[80%] md:w-[60%] lg:w-[50%] bg-white font-bold rounded-xl py-3 cursor-pointer mt-4 hover:bg-gray-100 transition-colors">
+                        INICIAR SESIÓN
+                    </button>
+                    
+                    <!-- Botón volver visible solo en MD+ -->
+                    <div class="w-full md:w-[80%] text-center mt-2 hidden md:block">
+                        <a routerLink="/" 
+                           class="text-white hover:text-gray-300 transition-colors inline-block py-2">
+                            Volver
+                        </a>
+                    </div>
                 </form>
+            </div>
         </div>
-
     </div>
 </div>
