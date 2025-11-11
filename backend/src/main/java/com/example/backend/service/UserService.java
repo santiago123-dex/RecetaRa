@@ -29,45 +29,38 @@ public class UserService {
     //Registrar usuario
     public RegisterResponse registrarUsuario(RegisterRequest request){
         // se comprueba si el email existe
-        if (userRepository.findByEmail(request.getEmail())!= null)  {
+        if (userRepository.findByEmail(request.getEmail()).isPresent())  {
             throw new RuntimeException("Email ya existe");
         }
 
-        // se encripta la contraseña y se guarda en la base de datos
-        UserEntity user = new UserEntity();
-        user.setUsername(request.getUsername());
-        user.setEmail(request.getEmail());
-        user.setPasswordHash(passwordEncoder.encode(request.getPasswordHash()));
+        UserEntity user = UserEntity.builder()
+            .nombreUsuario(request.getNombreUsuario())
+            .email(request.getEmail())
+            .contrasena(passwordEncoder.encode(request.getContrasena()))
+            .build();
 
-        UserEntity savedUser = userRepository.save(user);
-        return new RegisterResponse(savedUser.getId(), savedUser.getUsername(), savedUser.getEmail());
+        userRepository.save(user);
+        return new RegisterResponse(user.getId(), user.getEmail(), user.getNombreUsuario() ,"Usuario registrado correctamente");
     }
 
     // buscar por email para el logueo
     public LoginResponse login(LoginRequest request){
-        Optional<UserEntity> user = userRepository.findByEmail(request.getEmail());
 
-        if (user.isEmpty()) {
+        Optional<UserEntity> userOpt = userRepository.findByEmail(request.getEmail());
+
+        if (!userOpt.isPresent()) {
             throw new RuntimeException("Usuario no encontrado");
         }
 
-        UserEntity userEntity = user.get();
+        UserEntity user = userOpt.get();
 
-        if (!passwordEncoder.matches(request.getPasswordHash(), userEntity.getPasswordHash())) {
+        if (!passwordEncoder.matches(request.getContrasena(), user.getContrasena())) {
             throw new RuntimeException("Contraseña incorrecta");
         }
 
-        return new LoginResponse(null, null);
+        return new LoginResponse(null, "Inicio de sesion exitoso");
     }
 
-
-    //perfil del usuario
-    public UserEntity getUser(Long id){
-        //Se obtiene el id
-        return userRepository.findById(id)
-        // lanza error al no encontrar nada
-            .orElseThrow(() -> new RuntimeException("usuario no encontrado"));
-    }
 
 
 

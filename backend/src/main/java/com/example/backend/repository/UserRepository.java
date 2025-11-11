@@ -8,8 +8,15 @@ import org.springframework.stereotype.Repository;
 
 import com.example.backend.entity.UserEntity;
 
+
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long>{
     //metodo para buscar el email
-    Optional<UserEntity> findByEmail(String email);
+    Optional<UserEntity> findByEmail(String email); 
+
+    Optional<UserEntity> findByNombreUsuario(String nombreUsuario);
+
+    boolean existsByEmail(String email);
+
+    boolean existsByNombreUsuario(String nombreUsuario);    
 }

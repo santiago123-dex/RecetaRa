@@ -23,23 +23,28 @@
         <!-- Form section -->
         <div class="w-full p-4 md:p-9 flex items-center justify-center mt-14">
             <div class="w-full max-w-[760px] p-4 md:p-7 flex flex-col items-center justify-center">
-                <form class="w-full max-w-md flex flex-col gap-6 items-center justify-center rounded-2xl">
+                <form [formGroup]="form" (ngSubmit)="onLogin()" class="w-full max-w-md flex flex-col gap-6 items-center justify-center rounded-2xl">
                     <h2 class="text-white text-3xl text-center md:text-5xl font-extrabold mb-3 ">Iniciar Sesión</h2>
 
                     <input type="email" 
                            placeholder="correo@ejemplo.com" 
+                           formControlName = "email"
                            required 
                            class="w-[80%] md:w-[80%] bg-transparent text-white placeholder-white py-2 border-b-2 border-gray-300 focus:placeholder-opacity-0 focus:border-white focus:outline-none transition-all ease-in-out duration-300">
 
                     <input type="password" 
+                           formControlName = "contrasena"
                            placeholder="********" 
                            required
                            class="w-[80%] md:w-[80%] bg-transparent text-white placeholder-white py-2 border-b-2 border-gray-300 focus:placeholder-opacity-0 focus:border-white focus:outline-none transition-all ease-in-out duration-300">
-                
-                    <button type="submit" 
+                <!-- El disable depende del loading, si es falso el boton esta habilitado sino lo contrario -->
+                    <button type="submit" [disabled]="loading"
                             class="w-[80%] md:w-[60%] lg:w-[50%] bg-white font-bold rounded-xl py-3 cursor-pointer mt-4 hover:bg-gray-100 transition-colors">
-                        INICIAR SESIÓN
+                            {{loading ? 'Entrando' : 'INICIAR SESION'}}
                     </button>
+
+                     <div *ngIf="message" class="text-green-400 text-center">{{ message }}</div>
+                    <div *ngIf="error" class="text-red-400 text-center">{{ error }}</div>
                     
                     <!-- Botón volver visible solo en MD+ -->
                     <div class="w-full md:w-[80%] text-center mt-2 hidden md:block">
