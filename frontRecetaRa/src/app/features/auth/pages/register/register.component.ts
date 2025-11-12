@@ -31,7 +31,7 @@ export class RegisterComponent {
     console.log('Form value:', this.form.value); // Debug 2
     console.log('Form valid:', this.form.valid); // Debug 3
     if (this.form.invalid) {
-      console.log('Form is invalid'); // Debug 4
+      conso zle.log('Form is invalid'); // Debug 4
       console.log('Form errors:', this.form.errors); // Debug 5
       return;
     }
