@@ -1,17 +1,22 @@
 package com.example.backend.service;
 
 
+import java.util.List;
 import java.util.Optional;
+
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.backend.dto.AuthResponse;
 import com.example.backend.dto.LoginRequest;
 import com.example.backend.dto.LoginResponse;
 import com.example.backend.dto.RegisterRequest;
 import com.example.backend.dto.RegisterResponse;
 import com.example.backend.entity.UserEntity;
 import com.example.backend.repository.UserRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class UserService {
@@ -26,6 +31,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Transactional
     //Registrar usuario
     public RegisterResponse registrarUsuario(RegisterRequest request){
         // se comprueba si el email existe
@@ -43,6 +49,7 @@ public class UserService {
         return new RegisterResponse(user.getId(), user.getEmail(), user.getNombreUsuario() ,"Usuario registrado correctamente");
     }
 
+    @Transactional
     // buscar por email para el logueo
     public LoginResponse login(LoginRequest request){
 
@@ -61,7 +68,31 @@ public class UserService {
         return new LoginResponse(null, "Inicio de sesion exitoso");
     }
 
+    @Transactional
+    public List<AuthResponse> listarUsuarios (){
+        
+        return userRepository.findAll().stream()
+        .map(user -> AuthResponse.builder()
+            .id(user.getId().toString())
+            .email(user.getEmail())
+            .build()
+        )
+        .toList();
 
+
+    }
+
+    @Transactional
+    public Optional<UserEntity> buscarId(Long id){
+
+        Optional<UserEntity> userId = userRepository.findById(id);
+        return userId;
+    }
+
+    @Transactional
+    public void borrarUsuario(Long id){
+        userRepository.deleteById(id);
+    }
 
 
 }

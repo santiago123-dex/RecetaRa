@@ -11,6 +11,7 @@ import com.example.backend.entity.UserEntity;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long>{
+    Optional<UserEntity> findById(Long id);
     //metodo para buscar el email
     Optional<UserEntity> findByEmail(String email); 
 
