@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../../../core/services/api.service';
@@ -10,21 +10,24 @@ import { LoginResponse } from '../../../../core/models/auth/auth.model';
   standalone: true,
   imports: [RouterLink, CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls : ['./login.component.css']
 })
 export class LoginComponent {
 
-  form: FormGroup;
   loading: boolean = false
   message: string = '';
   error: string = '';
 
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router){
-    this.form = this.fb.group({
+  private fb = inject(FormBuilder);
+  private api = inject(ApiService);
+  private router = inject(Router)
+
+
+  form = this.fb.nonNullable.group({
       email: ['', [Validators.required, Validators.email]],
       contrasena: ['', [Validators.required]]
     });
-  }
+  
     onLogin(){
       if(this.form.invalid){
         return;
@@ -35,7 +38,7 @@ export class LoginComponent {
       this.error = '';
 
 
-      this.api.login(this.form.value).subscribe({
+      this.api.login(this.form.getRawValue()).subscribe({
         next: (res: LoginResponse) => {
           localStorage.setItem("token", String(res.token) || '');
           this.message = String(res.message) || "Login registrado correctamente";
@@ -44,7 +47,7 @@ export class LoginComponent {
 
         },
         error: (err) =>{
-          this.error = "Usuario no se ha podido Loign"
+          this.error = err.error?.mensaje || "Usuario no se ha podido Loign"
           this.loading = false;
         }
       })
