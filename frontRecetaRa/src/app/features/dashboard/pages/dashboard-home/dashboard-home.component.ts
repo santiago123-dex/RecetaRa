@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { CardMiddle } from './card-middle/card-middle.component';
-import { CardLeft } from './sidebar-left/sidebar-left.component';
+import { CardLeft } from '../../components/sidebar-left/sidebar-left.component';
 
 @Component({
   selector: 'app-dashboard-home',
