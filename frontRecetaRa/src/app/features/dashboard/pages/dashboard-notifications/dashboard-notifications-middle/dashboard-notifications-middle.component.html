@@ -1,0 +1,16 @@
+<div class="text-white py-3 px-6 text-xl font-bold border-[#4d4d4d] border-r border-l">
+    Notifications
+</div>
+<div class="w-full h-[60px] flex border-r border-l border-b border-[#4d4d4d] justify-around">
+    <a routerLink="." routerLinkActive="font-bold" [routerLinkActiveOptions]="{exact:true}"
+        class="flex w-full h-full items-center justify-center min-w-[60px] text-white hover:bg-[#161616] hover:duration-300">
+        All
+    </a>
+    <a routerLink="nuevas"
+        class="flex w-full h-full items-center justify-center min-w-[60px] text-white hover:bg-[#161616] hover:duration-300">
+        New Recetas
+    </a>
+</div>
+<div>
+    <router-outlet></router-outlet>
+</div>
