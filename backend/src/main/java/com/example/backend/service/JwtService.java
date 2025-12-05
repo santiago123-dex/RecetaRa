@@ -48,8 +48,8 @@ public class JwtService {
             .compact();
     }
 
-    public Claims getClaims(String token){
-        // se usa el parcer para construir y verificar el token y demas de eso los puede firmar
+    private Claims getClaims(String token){
+        // se usa el parser para construir y verificar el token y demas de eso los puede firmar
         return Jwts.parserBuilder()
         // Se pasa la clave secreta que ya esta firmada
             .setSigningKey(secretKey)

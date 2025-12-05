@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
-import { RouterLink } from "@angular/router";
+import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 
 
 @Component({
   selector: 'dashboard-notifications-middle',
   standalone: true,
-  imports: [],
+  imports: [RouterLinkActive, RouterOutlet,RouterLink],
   templateUrl: './dashboard-notifications-middle.component.html',
 })
 

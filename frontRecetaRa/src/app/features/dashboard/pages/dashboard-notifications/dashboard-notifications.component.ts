@@ -7,7 +7,7 @@ import { RouterOutlet } from "@angular/router";
 @Component({
     selector: 'dashboard-notifications',
     standalone: true,
-    imports: [CardLeft, DashboardNotificationsMiddle, RouterOutlet],
+    imports: [CardLeft, RouterOutlet],
     templateUrl: './dashboard-notifications.component.html'
 })
 

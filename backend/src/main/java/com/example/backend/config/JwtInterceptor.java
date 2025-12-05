@@ -25,7 +25,7 @@ public class JwtInterceptor implements HandlerInterceptor{
 
         String authHeader = request.getHeader("Authorization");
 
-        if(authHeader == null || !authHeader.startsWith("Bearer")){
+        if(authHeader == null || !authHeader.startsWith("Bearer ")){
             response.setStatus(401);
             response.getWriter().write("Aceeso denegado: No has enviado el token");
             return false;
