@@ -13,7 +13,7 @@ public class Cors implements WebMvcConfigurer {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/**")
+                registry.addMapping("/**")
                 .allowedOriginPatterns("*")
                 .allowedOrigins("http://localhost:4200")
                 .allowedMethods("GET", "POST", "UPDATE", "DELETE", "OPTIONS")

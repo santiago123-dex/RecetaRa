@@ -35,19 +35,26 @@
                     <input type="password" 
                            formControlName = "contrasena"
                            placeholder="********" 
+                           #input2
                            required
                            class="w-[80%] md:w-[80%] bg-transparent text-white placeholder-white py-2 border-b-2 border-gray-300 focus:placeholder-opacity-0 focus:border-white focus:outline-none transition-all ease-in-out duration-300">
                 <!-- El disable depende del loading, si es falso el boton esta habilitado sino lo contrario -->
-                    <button type="submit" [disabled]="loading"
+                    <button type="submit" [disabled]="loading()"
                             class="w-[80%] md:w-[60%] lg:w-[50%] bg-white font-bold rounded-xl py-3 cursor-pointer mt-4 hover:bg-gray-100 transition-colors">
-                            {{loading ? 'Entrando' : 'INICIAR SESION'}}
+                            {{loading() ? 'Entrando' : 'INICIAR SESION'}}
                     </button>
 
-                     <div *ngIf="message" class="text-green-400 text-center">{{ message }}</div>
-                    <div *ngIf="error" class="text-red-400 text-center">{{ error }}</div>
+                     <div *ngIf="message" class="text-green-400 text-center">{{ message() }}</div>
+                    <div *ngIf="error" class="text-red-400 text-center">{{ error() }}</div>
                     
+                    <div class="w-full text-center text-white flex flex-col items-center">
+                        <p class="mb-8">¿No tiene cuenta?</p>
+
+                        <a routerLink="/auth/register" class="bg-white hover:bg-gray-100 text-black font-semibold py-3 px-4 rounded-xl w-[80%] md:w-[60%] lg:w-[50%] block text-center transition-all cursor-pointer">Registrate</a>
+
+                    </div>
                     <!-- Botón volver visible solo en MD+ -->
-                    <div class="w-full md:w-[80%] text-center mt-2 hidden md:block">
+                    <div class="w-full md:w-[80%] text-center mt-1 hidden md:block">
                         <a routerLink="/" 
                            class="text-white hover:text-gray-300 transition-colors inline-block py-2">
                             Volver
