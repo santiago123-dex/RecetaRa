@@ -29,7 +29,7 @@ public class Recipes {
     //se usa el lazy para que no cargue toda la informacion del usuario al cargar la receta
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false)
-    private Long usuarioId;
+    private UserEntity usuarioId;
 
     @Column(name = "titulo", nullable = false)
     private String titulo;
