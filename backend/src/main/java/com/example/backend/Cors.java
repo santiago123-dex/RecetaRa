@@ -15,7 +15,7 @@ public class Cors implements WebMvcConfigurer {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                 .allowedOriginPatterns("*")
-                .allowedOrigins("http://localhost:4200")
+                .allowedOrigins("https://front-receta-ra.vercel.app/", "http://localhost:4200")
                 .allowedMethods("GET", "POST", "UPDATE", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
