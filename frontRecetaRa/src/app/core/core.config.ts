@@ -1,5 +1,5 @@
 //URL DEL BACKEND
 
 export const environment = {
-    apiUrl: "http://localhost:8080"
+    apiUrl: "https://recetara-1.onrender.com"
 }
