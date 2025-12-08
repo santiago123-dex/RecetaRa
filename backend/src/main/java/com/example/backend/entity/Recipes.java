@@ -6,6 +6,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -27,8 +28,8 @@ public class Recipes {
 
     //se usa el lazy para que no cargue toda la informacion del usuario al cargar la receta
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "usuario_id", nullable = false)
-    private Long usuarioId;
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private UserEntity usuarioId;
 
     @Column(name = "titulo", nullable = false)
     private String titulo;
